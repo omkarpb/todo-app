@@ -14,10 +14,15 @@ class PendingList extends Component {
 
     render() {
         var element = this.props.list.map((task) => <PendingTask task={task} key={shortid.generate()} onDone={this.onDone}/>);
+        
+        const listArea = (this.props.list.length === 0) ?
+        (<div>No tasks to show</div>) :
+        (<ul>{element}</ul>);
+
         return (
             <div>
                 <h1>Pending Tasks</h1>
-                <ul>{element}</ul>
+                {listArea}
             </div>
         );
     }

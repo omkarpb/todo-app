@@ -14,12 +14,13 @@ class CompletedList extends Component {
 
     render() {
         var element = this.props.list.map((task) => <CompletedTask task={task} key={shortid.generate()} onUndone={this.onUndone}/>);
+        const listArea = (this.props.list.length === 0) ?
+        (<div>No tasks to show</div>) :
+        (<ul>{element}</ul>);
         return (
             <div>
                 <h1>Completed Tasks</h1>
-                <ul>
-                    {element}
-                </ul>
+                {listArea}
             </div>
         );
     }
