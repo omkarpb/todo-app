@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PendingTask from './PendingTask';
+var shortid = require('shortid');
 
 class PendingList extends Component {
     // constructor(props) {
@@ -8,7 +9,7 @@ class PendingList extends Component {
 
 
     render() {
-        var element = this.props.list.map((task) => <PendingTask task={task}/>);
+        var element = this.props.list.map((task) => <PendingTask task={task} key={shortid.generate()}/>);
         return (
             <div>
                 Pending Tasks

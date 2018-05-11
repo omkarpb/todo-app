@@ -7,19 +7,33 @@ import CompletedList from './CompletedList';
 class App extends Component {
   constructor(props){
     super(props);
-    this.pendingList = ["Buy milk", "Do laundry"];
-    this.completedList = ["Pay bill", "Water plants"];
+    this.state = {
+      pendingList: [],
+      completedList: ["Pay bill", "Water plants"]
+    };
+    this.addNewTask = this.addNewTask.bind(this);
   }
 
-  
+  addNewTask(newTask) {
+    var pendingList = this.state.pendingList;
+    var completedList = this.state.completedList;
+    pendingList.push(newTask);
+    this.setState((lists)=> 
+      ({
+        pendingList: pendingList,
+        completedList: completedList
+      })
+    );
+    
+  }
 
   render() {
     return (
       <div>
-        <AddTaskForm />
+        <AddTaskForm addNewTask={this.addNewTask}/>
         <div>
-            <PendingList list={this.pendingList}/>
-            <CompletedList list={this.completedList}/>
+            <PendingList list={this.state.pendingList}/>
+            <CompletedList list={this.state.completedList}/>
         </div>
       </div>
     );
