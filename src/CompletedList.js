@@ -3,16 +3,20 @@ import CompletedTask from './CompletedTask';
 var shortid = require('shortid');
 
 class CompletedList extends Component {
-    // constructor(props) {
-    //     super(props);
-    // }
+    constructor(props) {
+        super(props);
+        this.onUndone = this.onUndone.bind(this);
+    }
 
+    onUndone(task){
+        this.props.onUndone(task);
+    }
 
     render() {
-        var element = this.props.list.map((task) => <CompletedTask task={task} key={shortid.generate()}/>);
+        var element = this.props.list.map((task) => <CompletedTask task={task} key={shortid.generate()} onUndone={this.onUndone}/>);
         return (
             <div>
-                Completed Tasks
+                <h1>Completed Tasks</h1>
                 <ul>
                     {element}
                 </ul>
