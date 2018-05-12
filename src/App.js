@@ -3,6 +3,7 @@ import './App.css';
 import AddTaskForm from './AddTaskForm';
 import PendingList from './PendingList';
 import CompletedList from './CompletedList';
+import { Grid, Row, Jumbotron } from 'react-bootstrap';
 var shortid = require('shortid');
 
 class App extends Component {
@@ -97,15 +98,29 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <AddTaskForm addNewTask={this.addNewTask} />
-        <div>
-          <PendingList list={this.state.pendingList} onDone={this.onDone} onSaveEdit={this.onSaveEdit} />
-          <CompletedList list={this.state.completedList} onUndone={this.onUndone} onDelete={this.onDelete} />
-        </div>
-      </div>
-    );
-  }
-}
+      <Grid>
+        <Jumbotron>
+          <h1>todo list </h1>
+          <h3>Created in Reactjs</h3>
+        </Jumbotron>
 
-export default App;
+
+          <Grid className="app">
+            <Row>
+              <AddTaskForm addNewTask={this.addNewTask} />
+            </Row>
+            <div className="lists">
+              <Row>
+                <PendingList list={this.state.pendingList} onDone={this.onDone} onSaveEdit={this.onSaveEdit} />
+              </Row>
+              <Row>
+                <CompletedList list={this.state.completedList} onUndone={this.onUndone} onDelete={this.onDelete} />
+              </Row>
+            </div>
+            </Grid>
+          </Grid>
+          );
+        }
+      }
+      
+      export default App;

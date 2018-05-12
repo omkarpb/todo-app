@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PendingTask from './PendingTask';
+import { Panel, ListGroup } from 'react-bootstrap';
 
 class PendingList extends Component {
     constructor(props) {
@@ -23,13 +24,13 @@ class PendingList extends Component {
         
         const listArea = (this.props.list.length === 0) ?
         (<div>No tasks to show</div>) :
-        (<ul>{element}</ul>);
+        (<ListGroup>{element}</ListGroup>);
 
         return (
-            <div>
-                <h1>Pending Tasks</h1>
+            <Panel bsStyle="success">
+                <Panel.Heading><h4>Pending Tasks</h4></Panel.Heading>
                 {listArea}
-            </div>
+            </Panel>
         );
     }
 }

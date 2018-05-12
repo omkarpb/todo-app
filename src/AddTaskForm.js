@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button, FormControl, Form, Col } from 'react-bootstrap';
 
 class AddTaskForm extends Component {
     constructor(props) {
@@ -21,13 +22,19 @@ class AddTaskForm extends Component {
     }
 
     render() {
-
+        const styles = {
+            width: '100%',
+        };
         return (
             <div>
-                <form>
-                    <input type="text" placeholder="Add Task.." value={this.state.newTask} onChange={this.handleChange} />
-                    <input type="button" value="Add" onClick={this.handleAddNewTask} />
-                </form>
+                <Form inline>
+                        <Col sm={10}>
+                            <FormControl style={styles} type="text" placeholder="Add Task.." value={this.state.newTask} onChange={this.handleChange} />
+                        </Col>
+                        <Col sm={2}>
+                            <Button style={styles} bsStyle="success" onClick={this.handleAddNewTask}>Add</Button>
+                        </Col>
+                </Form>
             </div>
         );
     }

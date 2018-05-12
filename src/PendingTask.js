@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button, ListGroupItem, Row, Col, Glyphicon  } from 'react-bootstrap';
 
 class PendingTask extends Component {
     constructor(props) {
@@ -20,39 +21,43 @@ class PendingTask extends Component {
         event.preventDefault();
     }
     onCancelEdit(event) {
-        this.setState({ isEdit: false });        
+        this.setState({ isEdit: false });
         event.preventDefault();
     }
 
     onUpdateTask(event) {
-        this.setState({task: event.target.value});
+        this.setState({ task: event.target.value });
     }
 
     onSaveEdit(event) {
-        if(this.state.task.trim() !== '') {
-            this.setState({ isEdit: false });        
-            this.props.onSaveEdit({id: this.props.task.id, task: this.state.task});
+        if (this.state.task.trim() !== '') {
+            this.setState({ isEdit: false });
+            this.props.onSaveEdit({ id: this.props.task.id, task: this.state.task });
         } else {
             alert('You must write something for task');
-        }        
+        }
         event.preventDefault();
     }
 
     getElement() {
         if (this.state.isEdit) {
             return (
-                <li>
-                    <input type="text" value={this.state.task} onChange={this.onUpdateTask}/>
-                    <input type="button" value="Save" onClick={this.onSaveEdit}/>
-                    <input type="button" value="Cancel" onClick={this.onCancelEdit}/>
-                </li>)
+                <ListGroupItem>
+                    <Row>
+                        <Col sm={8}><input type="text" value={this.state.task} onChange={this.onUpdateTask} /></Col>
+                        <Col sm={2}><Button bsStyle="success" bsSize="small" onClick={this.onSaveEdit}> Save <Glyphicon glyph="floppy-disk"/></Button></Col>
+                        <Col sm={2}><Button bsStyle="primary" bsSize="small" onClick={this.onCancelEdit}> Cancel <Glyphicon glyph="remove"/></Button></Col>
+                    </Row>
+                </ListGroupItem>)
         } else {
             return (
-                <li>
-                    {this.props.task.task}
-                    <input type="button" value="Edit" onClick={this.handleClickOnEdit} />
-                    <input type="button" value="Done" onClick={this.onDone} />
-                </li>
+                <ListGroupItem>
+                    <Row>
+                    <Col sm={8}>{this.props.task.task}</Col>
+                    <Col sm={2}><Button bsStyle="success" bsSize="small" onClick={this.handleClickOnEdit}> Edit <Glyphicon glyph="pencil"/> </Button></Col>
+                    <Col sm={2}><Button bsStyle="primary" bsSize="small" onClick={this.onDone}> Done <Glyphicon glyph="ok-sign"/> </Button></Col>
+                    </Row>
+                </ListGroupItem>
             );
         }
     }

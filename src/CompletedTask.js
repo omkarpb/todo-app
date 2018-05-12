@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { Button, ListGroupItem, Col, Row, Glyphicon } from 'react-bootstrap';
 
 class CompletedTask extends Component {
     constructor(props) {
         super(props);
         this.onUndone = this.onUndone.bind(this);
         this.onDelete = this.onDelete.bind(this);
-        this.state = ({task: this.props.task});
+        this.state = ({ task: this.props.task });
     }
 
     onUndone(event) {
@@ -18,11 +19,13 @@ class CompletedTask extends Component {
     }
     render() {
         return (
-            <li>
-                {this.props.task.task}
-                <input type="button" value="Delete" onClick={this.onDelete} />
-                <input type="button" value="Undone" onClick={this.onUndone} />
-            </li>);
+            <ListGroupItem>
+                <Row>
+                    <Col sm={8}>{this.props.task.task}</Col>
+                    <Col sm={2}><Button bsStyle="danger" bsSize="small" onClick={this.onDelete}> Delete <Glyphicon glyph="remove"/></Button></Col>
+                    <Col sm={2}><Button bsStyle="primary" bsSize="small" onClick={this.onUndone}> Undone <Glyphicon glyph="remove-sign"/></Button></Col>
+                </Row>
+            </ListGroupItem>);
     }
 }
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CompletedTask from './CompletedTask';
+import { Panel, ListGroup } from 'react-bootstrap';
 
 class CompletedList extends Component {
     constructor(props) {
@@ -21,12 +22,12 @@ class CompletedList extends Component {
         );
         const listArea = (this.props.list.length === 0) ?
             (<div>No tasks to show</div>) :
-            (<ul>{element}</ul>);
+            (<ListGroup>{element}</ListGroup>);
         return (
-            <div>
-                <h1>Completed Tasks</h1>
+            <Panel bsStyle="warning">
+                <Panel.Heading><h4>Completed Tasks</h4></Panel.Heading>
                 {listArea}
-            </div>
+            </Panel>
         );
     }
 }
